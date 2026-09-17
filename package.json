@@ -1,0 +1,21 @@
+{
+  "name": "sign-type-classifier",
+  "version": "1.0.0",
+  "description": "Learning project: how to train image classifiers with TensorFlow.js transfer learning (MobileNetV1). Commercial sign types (cabinet, channel letter, flat cut, post panel) are the example dataset.",
+  "scripts": {
+    "train": "ts-node src/train.ts",
+    "evaluate": "ts-node src/evaluate.ts"
+  },
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^4.22.0",
+    "canvas": "^2.11.2",
+    "glob": "^10.4.5",
+    "pdfjs-dist": "^3.11.174",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}
