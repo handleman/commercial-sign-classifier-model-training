@@ -21,9 +21,7 @@ data/flat_cut/
 data/post_panel/
 ```
 
-- `data/` is **gitignored** — images are never committed. A fresh clone starts with no training data.
-- This checkout already contains an example set (~200 images per class, ~800 total) so you can train right away.
-- To (re)fetch example images from open sources, use the download scripts (Bing via `icrawler`, DuckDuckGo top-up):
+- `data/` is **gitignored** — images are never committed. A fresh clone starts with no training data, so fetch it first with the download scripts below (Bing via `icrawler`, DuckDuckGo top-up):
   ```bash
   pip install icrawler duckduckgo-search requests
   python scripts/download_cabinet_signs.py  # or download_channel_letter / download_flat_cut / download_post_panel

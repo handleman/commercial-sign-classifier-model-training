@@ -34,3 +34,8 @@ Transfer learning: MobileNetV1 (ImageNet, URL in `src/config.ts`) → custom 4-c
 - Val split is a fresh random 80/20 shuffle on every run (`buildDatasets`), so `evaluate` does not necessarily score the same val set that training validated on — run-to-run metrics are not directly comparable.
 - `.gitignore` ignores `data/`, `node_modules/`, and `output/`. Don't commit training artifacts — publish keepers via `gh release create` with `output/model/best/model.json` + `weights.bin` as side-by-side assets (see README).
 - CPU-only (`@tensorflow/tfjs-node`); first run downloads MobileNet weights from Google Storage and caches them via tfjs.
+
+## Workflow
+
+- `AGENTS.md` and `CLAUDE.md` must stay in sync — mirror any repo-wide guidance in both.
+- Work on a feature branch (`feat/<name>`), never directly on `main`. When finished and verified, stop and explicitly ask the user before merging — merges go into `main` via PR only.

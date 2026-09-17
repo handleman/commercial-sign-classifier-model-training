@@ -49,8 +49,13 @@ EarlyStopping (patience=5) applies to both phases. Best checkpoint (by `val_acc`
 
 ## Notes
 
-- MobileNetV1 weights are downloaded from Google Storage on first run and cached by tfjs. The comment in `model.ts` incorrectly says "MobileNetV2" — the actual URL in `config.ts` is `mobilenet_v1_1.0_224`.
+- MobileNetV1 weights are downloaded from Google Storage on first run and cached by tfjs. Source of truth for the base URL is `src/config.ts` (`mobilenet_v1_1.0_224`).
 - PDFs are rendered at 2× scale via `pdfjs-dist` + `canvas`, then letterboxed to 224×224. Only the first page is used.
 - Augmentation is minimal: random horizontal flip + ±0.1 brightness jitter, applied only to training set.
 - `train.ts` patches deprecated `util.isNullOrUndefined`, `util.isFunction`, and `util.isArray` at startup — required because tfjs-node internally uses these Node.js v12-removed helpers.
 - Training is CPU-only (`@tensorflow/tfjs-node` native backend).
+
+## Workflow
+
+- `CLAUDE.md` and `AGENTS.md` must stay in sync — mirror any repo-wide guidance in both.
+- Work on a feature branch (`feat/<name>`), never directly on `main`. When finished and verified, stop and explicitly ask the user before merging — merges go into `main` via PR only.
