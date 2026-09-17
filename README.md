@@ -41,18 +41,14 @@ All hyperparameters live in `src/config.ts`. Training is CPU-only; MobileNet wei
 
 ## Keeping a trained model
 
-`output/` is **gitignored** — checkpoints (~26 MB of binaries, rewritten wholesale on every run) don't belong in git. When you have a checkpoint worth keeping, publish `output/model/best/` as a versioned attachment on a GitHub Release instead:
+`output/` is **gitignored** — checkpoints (~26 MB of binaries, rewritten wholesale on every run) don't belong in git. When you have a checkpoint worth keeping, publish `output/model/best/` as versioned files on a GitHub Release instead. Full steps: [docs/releasing-a-model.md](docs/releasing-a-model.md).
+
+Short version:
 
 ```bash
 npm run train
-gh release create v1.0.0 output/model/best/model.json output/model/best/weights.bin \
-  --title "v1.0.0" --notes "val_acc 0.93, see output/logs/history.json"
+gh release create model-v1.0.0 output/model/best/model.json output/model/best/weights.bin output/logs/history.json \
+  --title "Model v1.0.0" --notes "val_acc 0.93, see history.json"
 ```
 
-Upload both files (not a zip): `model.json` resolves `weights.bin` via a relative path, so keeping both assets side by side under the same release lets TensorFlow.js load the model straight from its URL:
-
-```ts
-const model = await tf.loadLayersModel(
-  'https://github.com/<user>/<repo>/releases/download/v1.0.0/model.json'
-);
-```
+Upload the files as side-by-side assets (not a zip): `model.json` resolves `weights.bin` via a relative path, so TensorFlow.js can load the model straight from its release URL.
